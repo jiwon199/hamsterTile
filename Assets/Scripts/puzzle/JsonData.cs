@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class stage
 {
+    //mixTile좌표,어떤 두 색이 섞였는지 추가 정보가 필요함. 도라버리겟다...
     public int level;   //스테이지 레벨
     public int width;  //가로 몇칸인지..
     public int height; //세로 몇칸인지..
@@ -13,6 +14,15 @@ public class stage
     public string start;  //시작타일 좌표
     public string end;  //끝타일 좌표
     public string[] colorPos;  //색타일 좌표
+
+    //믹스타일은 컬러넘에 포함시키면 안될거같은데? 조정을 어케하지
+    /*
+    public int mixNum; //믹스타일 수
+    public string[] mixPos;
+    public string[] mixCol;
+    */
+    public int jumpNum; //점프타일 갯수
+    public string[] jumpPos; //점프타일 좌표
 
 }
  

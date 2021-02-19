@@ -40,12 +40,12 @@ public class GuideText : MonoBehaviour
       
         if (message.Equals(guideText1.text))
         {
-            //메세지 두개인 상태에서 첫번째 슬롯의 메세지를 삭제해야 되면 슬롯2 메세지를 슬롯1로 올리기
-            //뒤로가기 기능 만든 후에 잘 동작하는지 확인 필요
+             
+            //메세지 두개인 상태에서 첫번째 슬롯의 메세지를 삭제해야 되면 슬롯2 메세지를 슬롯1로 올리기        
             if (!guideText2.text.Equals(""))
-            {
+            {                
                 guideText1.text = guideText2.text;
-                guideText1.text = "";
+                guideText2.text = "";
             }
             else
             {

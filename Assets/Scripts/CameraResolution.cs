@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraResolution : MonoBehaviour
-{
+{ 
     //기기별 해상도 조절 스크립트
     void Awake()
     {
+        /*
         Camera camera = GetComponent<Camera>();
         Rect rect = camera.rect;
         float scaleheight = ((float)Screen.width / Screen.height) / ((float)9 / 16); //(가로/세로)
@@ -23,5 +24,8 @@ public class CameraResolution : MonoBehaviour
             rect.x = (1f - scalewidth) / 2f;
         }
         camera.rect = rect;
+         */
     }
+
+
 }

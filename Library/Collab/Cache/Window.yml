@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
-    m_Keys: []
-    m_Values: 
+    m_Keys:
+    - "Assets/Resources/puzzle/\uC2A4\uD14C\uC774\uC9C0\uD328\uB110.png"
+    - ProjectSettings/ProjectSettings.asset
+    - 
+    m_Values: 000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

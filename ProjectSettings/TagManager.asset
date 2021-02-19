@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SeqTile
   - stagebtn
+  - ScrollManager
+  - sound
   layers:
   - Default
   - TransparentFX
@@ -42,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Behind Tree
+    uniqueID: 4128863887
+    locked: 0
+  - name: Tree
+    uniqueID: 341893005
+    locked: 0
+  - name: Front Tree
+    uniqueID: 1424562729
     locked: 0

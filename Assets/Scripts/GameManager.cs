@@ -3,109 +3,248 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-
- 
+using UnityEngine.SceneManagement;
+//ë‚´ë¶€ í´ë˜ìŠ¤=jsonì— ë“¤ì–´ê°€ëŠ” ì •ë³´ í´ë˜ìŠ¤
 [System.Serializable]
 public class clearData
 {
-    public bool[] clear=new bool[12];
+    public bool[] clear=new bool[24];  //í–„ìŠ¤ë¹Œë¦¬ì§€
+    public bool[] clear2 = new bool[40]; //í–„ì‹œí‹°
+    public bool watchStory;  //í–„ìŠ¤ë¹Œë¦¬ì§€ ìŠ¤í† ë¦¬ ì˜ìƒì„ ë´¤ëŠ”ì§€
+    public bool watchStory2; //í–„ì‹œí‹° ìŠ¤í† ë¦¬ ì˜ìƒì„ ë´¤ëŠ”ì§€
+    public bool[] placed = new bool[10];
+    public bool[] placed2 = new bool[12];
+    public bool[] complete = new bool[2];
+    public int world;   //í–„ìŠ¤ë¹Œë¦¬ì§€==0, í–„ì‹œí‹°==1;
+
+    public bool vilTuto;
+    public bool cityTuto;
+
 }
 
-//
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     
     string filePath;
-    public bool[] localClearInfo=new bool[12];
+    public bool[] localClearInfo=new bool[24];
+    public bool[] localClearInfo2 = new bool[40];
 
-    
+    public bool[] localPlacedInfo = new bool[10];
+    public bool[] localPlacedInfo2 = new bool[12];
+    public bool[] localCompleteInfo = new bool[2];
+    public int localWorldInfo;
+    public bool localWatchStory;
+    public bool localWatchStory2;
+
+    public bool localVilTuto;
+    public bool localCityTuto;
+
+    int lastStage = 24;
+    int lastStage2 = 40;
+
     // bool[] clear=new bool[1];
     void Awake()
     {
+         //Screen.SetResolution(1080,(1080/9)*16, true);
         if (instance == null)
         {
             instance = this;
         }
-        // ÀÎ½ºÅÏ½º°¡ Á¸ÀçÇÏ´Â °æ¿ì »õ·Î»ı±â´Â ÀÎ½ºÅÏ½º¸¦ »èÁ¦ÇÑ´Ù.
+        // ì¸ìŠ¤í„´ìŠ¤ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš° ìƒˆë¡œìƒê¸°ëŠ” ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì‚­ì œí•œë‹¤.
         else if (instance != this)
         {
             Destroy(gameObject);
         }
-        // ¾Æ·¡ÀÇ ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© ¾ÀÀÌ ÀüÈ¯µÇ´õ¶óµµ ¼±¾ğµÇ¾ú´ø ÀÎ½ºÅÏ½º°¡ ÆÄ±«µÇÁö ¾Ê´Â´Ù.
+        // ì•„ë˜ì˜ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ ì”¬ì´ ì „í™˜ë˜ë”ë¼ë„ ì„ ì–¸ë˜ì—ˆë˜ ì¸ìŠ¤í„´ìŠ¤ê°€ íŒŒê´´ë˜ì§€ ì•ŠëŠ”ë‹¤.
         //  instance = this;
         DontDestroyOnLoad(this);
+
+         
     }
     void Start()
     {
         filePath = Application.persistentDataPath + "/clearInfo.json";
-        //½ºÅ×ÀÌÁö Å¬¸®¾î ¾ó¸¸Å­Çß´ÂÁö..Á¤º¸ ·Îµå
+        //ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ì–¼ë§Œí¼í–ˆëŠ”ì§€..ì •ë³´ ë¡œë“œ       
         Load();
-              
+
+      
     }
     void Update()
     {
-        
+        //í¼ì¦ì”¬ì€ ë¦¬ë¡œë“œí•´ë„ ë°°ê²½ìŒì•… ì´ì–´ì§€ë„ë¡. ë‹¤ë¥¸ì”¬ìœ¼ë¡œ ê°€ë©´ ì—†ì• ê¸°
+        if (SceneManager.GetActiveScene().name != "puzzleScene")
+        {
+            GameObject keepBgm = GameObject.Find("KeepBGM");
+            if (keepBgm != null) { Destroy(keepBgm); }
+        }
     }
-    //Application.persistentDataPath + "/clearInfo.json" À§Ä¡¿¡ 12°³Â¥¸®, ¸ğµÎ falseÀÎ °Å ¸¸µé±â.
+    //Application.persistentDataPath + "/clearInfo.json" ìœ„ì¹˜ì— 12ê°œì§œë¦¬, ëª¨ë‘ falseì¸ ê±° ë§Œë“¤ê¸°.
     public void makeD()
     {     
        
         clearData cleardata= new clearData();
-         for(int i = 0; i < 12; i++)
+        for(int i = 0; i < lastStage; i++)
         {         
             cleardata.clear[i]  = false;
         }
+        for (int i = 0; i < lastStage2; i++)
+        {
+            cleardata.clear2[i] = false;
+        }
+        for (int i=0;i<cleardata.placed.Length;i++)
+        {
+            cleardata.placed[i] = false;
+        }
+        for (int i=0;i<cleardata.placed2.Length;i++)
+        {
+            cleardata.placed2[i] = false;
+        }
+        cleardata.complete[0]=false; cleardata.complete[1]=false;
+        cleardata.world = 0;
+        cleardata.watchStory=false;
+        cleardata.watchStory2=false;
+        cleardata.cityTuto = false;
+        cleardata.vilTuto = false;
         File.WriteAllText(Application.persistentDataPath + "/clearInfo.json", JsonUtility.ToJson(cleardata));
     }
     public void Load()
     {
-        //ÆÄÀÏÀÌ ¾øÀ¸¸é ÇØ´çÀ§Ä¡¿¡ ¸¸µç´Ù.(Ã¹ÇÃ·¹ÀÌ½Ã)
-        if (!File.Exists(filePath)) { makeD();   }
+         
+        //íŒŒì¼ì´ ì—†ìœ¼ë©´ í•´ë‹¹ìœ„ì¹˜ì— ë§Œë“ ë‹¤.(ì²«í”Œë ˆì´ì‹œ)
+        if (!File.Exists(filePath)) { makeD(); }
 
          string str = File.ReadAllText(Application.persistentDataPath + "/clearInfo.json");
          clearData cleardata = JsonUtility.FromJson<clearData>(str);
 
-        //ÀĞ¾î¿Â Å¬¸®¾îÁ¤º¸¸¦ localClearInfo¿¡
-        for (int i = 0; i < 12; i++)
+        //ì½ì–´ì˜¨ í´ë¦¬ì–´ì •ë³´ë¥¼ localClearInfoì—
+        for (int i = 0; i < lastStage; i++)
         {
             localClearInfo[i] = cleardata.clear[i];
-             
         }
+        for (int i = 0; i < lastStage2; i++)
+        {
+            localClearInfo2[i] = cleardata.clear2[i];
+        }
+
+        //ì½ì–´ì˜¨ ì•„ì´í…œì •ë³´ë¥¼ localPlacedInfoì— ë³µì‚¬
+        for (int i=0;i<cleardata.placed.Length;i++)
+        {
+            localPlacedInfo[i] = cleardata.placed[i];
+        }
+        for (int i=0;i<cleardata.placed2.Length;i++)
+        {
+            localPlacedInfo2[i] = cleardata.placed2[i];
+        }
+        //ì½ì–´ì˜¨ ì›”ë“œcompleteì •ë³´ì™€ ë§ˆì§€ë§‰ìœ¼ë¡œ ë¨¸ë¬¼ë €ë˜ ì›”ë“œ ì •ë³´ ë³µì‚¬
+        localCompleteInfo[0]=cleardata.complete[0]; localCompleteInfo[1]=cleardata.complete[1];
+        localWorldInfo = cleardata.world;
+        localWatchStory= cleardata.watchStory;
+        localWatchStory2= cleardata.watchStory2;
+        localCityTuto = cleardata.cityTuto;
+        localVilTuto = cleardata.vilTuto;
+
+
 
     }
     public void Save()
     {
         clearData cleardata = new clearData();
 
-        //°ÔÀÓ ÇÃ·¹ÀÌÇÏ¸é¼­ localClearInfo º¯¼ö¸¦ Á¶ÀÛ, ¼¼ÀÌºêÇÒ¶§ localClearInfo Á¤º¸¸¦ cleardata.data¿¡ ³Ö°í ÆÄÀÏ¿¡ ¾´´Ù.
-        for (int i = 0; i < 12; i++)
+        //ê²Œì„ í”Œë ˆì´í•˜ë©´ì„œ localClearInfo ë³€ìˆ˜ë¥¼ ì¡°ì‘, ì„¸ì´ë¸Œí• ë•Œ localClearInfo ì •ë³´ë¥¼ cleardata.dataì— ë„£ê³  íŒŒì¼ì— ì“´ë‹¤.
+        for (int i = 0; i < lastStage; i++)
         {
             cleardata.clear[i] = localClearInfo[i];
         }
+        for (int i = 0; i < lastStage2; i++)
+        {
+            cleardata.clear2[i] = localClearInfo2[i];
+        }
+        //localPlacedInfoë¥¼ cleardataë¡œ
+        for (int i=0;i<cleardata.placed.Length;i++)
+        {
+            cleardata.placed[i] = localPlacedInfo[i];
+        }
+        for (int i=0;i<cleardata.placed2.Length;i++)
+        {
+            cleardata.placed2[i] = localPlacedInfo2[i];
+        }
+        cleardata.complete[0] = localCompleteInfo[0]; cleardata.complete[1] = localCompleteInfo[1];
+        cleardata.world = localWorldInfo;
+        cleardata.watchStory = localWatchStory;
+        cleardata.watchStory2 = localWatchStory2;
+        cleardata.cityTuto = localCityTuto;
+        cleardata.vilTuto = localVilTuto;        
         File.WriteAllText(Application.persistentDataPath + "/clearInfo.json", JsonUtility.ToJson(cleardata));
     }
-    //Å×½ºÆ®¿øÇÒÇÏ°ÔÇÏ±âÀ§ÇÑ.. Å¬¸®¾îÁ¤º¸ ¸®¼Â ÇÔ¼ö.
-     public void resetClear()
+    
+    //í¼ì¦ ì”¬ì—ì„œ í´ë¦¬ì–´ ì¡°ê±´ ë§ì¶”ë©´ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜.
+    public void updateClear(int n)
     {
-        Debug.Log("È£ÃâµÊ");
-        for (int i = 1; i <=12; i++)
+        // Debug.Log("updateClear í˜¸ì¶œë¨"+n);        
+        if (localWorldInfo == 0) {   localClearInfo[n] = true; }
+        else {  localClearInfo2[n] = true; }
+        Save();
+    }
+
+    //í™ˆí™”ë©´ì—ì„œ ì•„ì´í…œì„ ë°°ì¹˜í•  ê²½ìš° í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    public void updatePlaced(int n)
+    {
+        if (localWorldInfo==0){localPlacedInfo[n] = true;}
+        else {localPlacedInfo2[n] = true;}
+
+        Save();
+    }
+    // í™ˆí™”ë©´ ê° ì›”ë“œ ì™„ë£Œì‹œì— í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    public void updateComplete(int n)
+    {
+        localCompleteInfo[n]=true;
+        Save();
+    }
+    // íŠœí† ë¦¬ì–¼ ìŠ¤í† ë¦¬ ì‹œì²­ ëë‚´ë©´ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜-ìŠ¤í† ë¦¬ë¥¼ ë´¤ìœ¼ë©´ ì´ì „ ë°ì´í„°ê°€ ìˆëŠ” ê²ƒìœ¼ë¡œ ê°„ì£¼
+    public void updateStoryShow()
+    {
+        localWatchStory = true;
+        Save();
+    }
+    // í–„ìŠ¤ë¹Œë¦¬ì§€-í–„ì‹œí‹° ìŠ¤í† ë¦¬ ì‹œì²­ ëë‚´ë©´ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    public void updateStoryShow2()
+    {
+        localWatchStory2 = true;
+        Save();
+    }
+    //ë¹Œë¦¬ì§€ í¼ì¦íŠœí†  ëë‚´ë©´ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    public void updateTuto_vil()
+    {
+        localVilTuto = true;
+        Save();
+    }
+    //ì‹œí‹° í¼ì¦íŠœí†  ëë‚´ë©´ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    public void updateTuto_cityl()
+    {
+        localCityTuto = true;
+        Save();
+    }
+    //í–„ìŠ¤ë¹Œë¦¬ì§€-í–„ì‹œí‹° ì´ë™ í•¨ìˆ˜
+    public void updateWorld()
+    {
+        if(localWorldInfo == 0) localWorldInfo = 1;
+        else localWorldInfo = 0;
+        Save();
+    }
+
+    public void testAllPuzzle()
+    {
+        for(int i = 0; i < 24; i++)
         {
-            localClearInfo[i-1]=false;
-            GameObject btn = GameObject.Find(i.ToString());
-            if (btn == null) Debug.Log("¹öÆ°ÀÌ ³Î");
-            Image img = btn.GetComponent<Image>();
-            btn.GetComponent<Image>().sprite = Resources.Load<Sprite>("btn") as Sprite;
+            localClearInfo[i] = true;
+        }
+        for (int i = 0; i < 40; i++)
+        {
+            localClearInfo2[i] = true;
         }
         Save();
     }
-    //ÆÛÁñ ¾À¿¡¼­ Å¬¸®¾î Á¶°Ç ¸ÂÃß¸é È£ÃâµÇ´Â ÇÔ¼ö.
-    public  void updateClear(int n)
-    {
-        Debug.Log("updateClear È£ÃâµÊ"+n);        
-        localClearInfo[n] =true;
-      
-        Save();
-    }
-    
+
 }
