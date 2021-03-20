@@ -6,23 +6,17 @@ using UnityEngine;
 [System.Serializable]
 public class stage
 {
-    //mixTileÁÂÇ¥,¾î¶² µÎ »öÀÌ ¼¯¿´´ÂÁö Ãß°¡ Á¤º¸°¡ ÇÊ¿äÇÔ. µµ¶ó¹ö¸®°Ù´Ù...
-    public int level;   //½ºÅ×ÀÌÁö ·¹º§
-    public int width;  //°¡·Î ¸îÄ­ÀÎÁö..
-    public int height; //¼¼·Î ¸îÄ­ÀÎÁö..
-    public int colorNum;  //»ç¿ëµÈ »öÅ¸ÀÏÀÇ ¼ö
-    public string start;  //½ÃÀÛÅ¸ÀÏ ÁÂÇ¥
-    public string end;  //³¡Å¸ÀÏ ÁÂÇ¥
-    public string[] colorPos;  //»öÅ¸ÀÏ ÁÂÇ¥
+    //mixTileì¢Œí‘œ,ì–´ë–¤ ë‘ ìƒ‰ì´ ì„ì˜€ëŠ”ì§€ ì¶”ê°€ ì •ë³´ê°€ í•„ìš”í•¨.  
+    public int level;   //ìŠ¤í…Œì´ì§€ ë ˆë²¨
+    public int width;  //ê°€ë¡œ ëª‡ì¹¸ì¸ì§€..
+    public int height; //ì„¸ë¡œ ëª‡ì¹¸ì¸ì§€..
+    public int colorNum;  //ì‚¬ìš©ëœ ìƒ‰íƒ€ì¼ì˜ ìˆ˜
+    public string start;  //ì‹œì‘íƒ€ì¼ ì¢Œí‘œ
+    public string end;  //ëíƒ€ì¼ ì¢Œí‘œ
+    public string[] colorPos;  //ìƒ‰íƒ€ì¼ ì¢Œí‘œ
 
-    //¹Í½ºÅ¸ÀÏÀº ÄÃ·¯³Ñ¿¡ Æ÷ÇÔ½ÃÅ°¸é ¾ÈµÉ°Å°°Àºµ¥? Á¶Á¤À» ¾îÄÉÇÏÁö
-    /*
-    public int mixNum; //¹Í½ºÅ¸ÀÏ ¼ö
-    public string[] mixPos;
-    public string[] mixCol;
-    */
-    public int jumpNum; //Á¡ÇÁÅ¸ÀÏ °¹¼ö
-    public string[] jumpPos; //Á¡ÇÁÅ¸ÀÏ ÁÂÇ¥
+    public int jumpNum; //ì í”„íƒ€ì¼ ê°¯ìˆ˜
+    public string[] jumpPos; //ì í”„íƒ€ì¼ ì¢Œí‘œ
 
 }
  
@@ -37,36 +31,7 @@ public class JsonData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        Data data = new Data();
-        data.m_nLevel = 12;
-        data.m_vecPositon = new Vector3(3.4f, 5.6f, 7.8f);
-
-        //data ¿ÀºêÁ§Æ®¸¦ jsonÇü½ÄÀ¸·Î ½ºÆ®¸µ¿¡ ³Ö´Â´Ù.
-        string str = JsonUtility.ToJson(data);
-        Debug.Log("ToJson : " + str);
-
-        //  jsonÇü½ÄÀÇ µ¥ÀÌÅÍ¸¦ ´Ù½Ã ¿ÀºêÁ§Æ®ÇüÀ¸·Î º¯È¯.
-        Data data2 = JsonUtility.FromJson<Data>(str);
-        data2.printData();
-
-        // ÀúÀåÇÏ±â
-        Data data3 = new Data();
-        data3.m_nLevel = 99;
-        data3.m_vecPositon = new Vector3(8.1f, 9.2f, 7.2f);
-        File.WriteAllText(Application.dataPath + "/stageInfo.json", JsonUtility.ToJson(data3));
-        */
-
-        //·ÎµåÇÏ±â
-        // file load 
-
-        //  string str = File.ReadAllText(Application.dataPath + "/stageInfo.json");
-        // Data data = JsonUtility.FromJson<Data>(str);
-
-        //  Debug.Log(data.stageInfo[0].clear);
-
-
-         
+       
 
 
     }
