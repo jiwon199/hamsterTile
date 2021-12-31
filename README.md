@@ -20,7 +20,7 @@
 
 ## 게임 방법
  
-<img src = "./img/룰.pnd" width="40%">
+<img src = "./img/룰.png" width="40%">
 
  
 ## 게임 컨텐츠
