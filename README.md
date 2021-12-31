@@ -9,7 +9,7 @@
 그래픽: 이소민
 
 ## 게임 스토리
-![ex_screenshot](./img/인트로.png)
+![ex_screenshot](./img/인트로.png) 
 
 <br/>
 우리와는 다른 햄스터들의 행성…  <br/>
@@ -19,10 +19,10 @@
 이를 이용해 마을을 부흥시키기로 마음먹는데…  <br/>
 
 ## 게임 방법
-![ex_screenshot](./img/룰.png)
+![ex_screenshot](./img/룰.png) {: width="850" height="456"}
 
 ## 게임 컨텐츠
-![ex_screenshot](./img/컨텐츠.png)
+![ex_screenshot](./img/컨텐츠.png){: width="850" height="456"}
 
 ## 출시
 [플레이 스토어 다운로드 링크](https://play.google.com/store/apps/details?id=com.ewha.hamsterTile)  
