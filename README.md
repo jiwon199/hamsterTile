@@ -1,3 +1,4 @@
+<center>
 # 🐹햄스타운
 가제-햄스터타일
 2020 12월~2021 2월 겨울게임제작 프로젝트  
@@ -9,8 +10,7 @@
 그래픽: 이소민
 
 ## 게임 스토리
-![ex_screenshot](./img/인트로.png) 
-
+<img src = "./img/인트로.png" width="80%">
 <br/>
 우리와는 다른 햄스터들의 행성…  <br/>
 이곳의 발전에 필요한 건 과학도, 기술도 아니다.  <br/>
@@ -19,12 +19,10 @@
 이를 이용해 마을을 부흥시키기로 마음먹는데…  <br/>
 
 ## 게임 방법
- 
-<img src = "./img/룰.png" width="40%">
+<img src = "./img/룰.png" width="70%">
 
- 
 ## 게임 컨텐츠
-![ex_screenshot](./img/컨텐츠.png){: width="850" height="456"}
+<img src = "./img/컨텐츠.png" width="70%">
 
 ## 출시
 [플레이 스토어 다운로드 링크](https://play.google.com/store/apps/details?id=com.ewha.hamsterTile)  
@@ -32,3 +30,4 @@
 # 플레이 영상
 아래 이미지를 클릭하면 유튜브 소개 동영상 링크로 이동합니다.  
 [![클릭시 유튜브 링크로 ](http://i.ytimg.com/vi/LHmfcxxa0xk/0.jpg)](https://www.youtube.com/watch?v=LHmfcxxa0xk) 
+</center>
