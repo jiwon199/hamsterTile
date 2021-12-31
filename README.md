@@ -19,7 +19,7 @@
 이를 이용해 마을을 부흥시키기로 마음먹는데…  <br/>
 
 ## 게임 방법
-![ex_screenshot](./img/룰.png){: width="850" height="456"}
+![ex_screenshot](./img/룰.png){:width="850" height="456"}
 
 ## 게임 컨텐츠
 ![ex_screenshot](./img/컨텐츠.png){: width="850" height="456"}
