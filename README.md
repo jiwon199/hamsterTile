@@ -27,7 +27,7 @@
 ## 출시
 [플레이 스토어 다운로드 링크](https://play.google.com/store/apps/details?id=com.ewha.hamsterTile)  
 
-# 플레이 영상
+## 플레이 영상
 아래 이미지를 클릭하면 유튜브 소개 동영상 링크로 이동합니다.  
 [![클릭시 유튜브 링크로 ](http://i.ytimg.com/vi/LHmfcxxa0xk/0.jpg)](https://www.youtube.com/watch?v=LHmfcxxa0xk) 
  
